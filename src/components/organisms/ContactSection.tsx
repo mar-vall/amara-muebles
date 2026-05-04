@@ -18,8 +18,20 @@ export function ContactSection() {
   };
 
   return (
-    <section className="py-24 flex items-center justify-center bg-cx-walnut">
-      <div className="w-full max-w-xl mx-auto px-6">
+    <section id="contacto" className="relative py-24 flex items-center justify-center scroll-mt-20 overflow-hidden">
+      {/* Workshop background */}
+      <img
+        src="https://images.unsplash.com/photo-1547609434-b732edfee020?w=1600&q=85&fit=crop&auto=format"
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover"
+        onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+      />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-foreground/65" />
+      <div className="relative z-10 w-full max-w-xl mx-auto px-6">
         <Reveal direction="none">
           <div className="bg-card p-12 shadow-2xl">
             <h2 className="text-[32px] leading-[42px] font-semibold text-foreground mb-3">
@@ -59,5 +71,6 @@ export function ContactSection() {
         </Reveal>
       </div>
     </section>
+
   );
 }

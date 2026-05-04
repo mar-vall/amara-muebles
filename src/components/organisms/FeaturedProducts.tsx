@@ -9,7 +9,7 @@ export function FeaturedProducts() {
   const heroWaUrl = productWhatsappUrl(hero.name);
 
   return (
-    <section className="py-24 bg-background">
+    <section id="novedades" className="py-24 bg-background scroll-mt-20">
       <div className="max-w-[1200px] mx-auto px-6">
 
         <Reveal className="flex justify-between items-end mb-16">
@@ -22,7 +22,7 @@ export function FeaturedProducts() {
             </h2>
           </div>
           <a
-            href="#"
+            href="#muebles"
             className="text-cx-walnut text-xs uppercase border-b border-cx-walnut pb-1 hover:opacity-70 transition-opacity tracking-widest"
           >
             Ver Todo
@@ -33,8 +33,8 @@ export function FeaturedProducts() {
 
           {/* Hero product — 2-col span, landscape aspect */}
           <Reveal className="md:col-span-2">
-            <div className="group cursor-pointer">
-              <div className={cn('w-full aspect-[4/3] mb-6 overflow-hidden relative', hero.placeholderColor)}>
+            <div className="group flex flex-col">
+              <div className={cn('w-full aspect-[4/3] mb-5 overflow-hidden relative', hero.placeholderColor)}>
                 {hero.imageUrl ? (
                   <img
                     src={hero.imageUrl}
@@ -52,21 +52,22 @@ export function FeaturedProducts() {
                     Destacado
                   </span>
                 </div>
-                <div className="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <a
-                    href={heroWaUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full bg-card text-card-foreground px-6 py-3 text-xs uppercase tracking-widest shadow-sm text-center hover:bg-cx-walnut hover:text-primary-foreground transition-colors duration-300"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Consultar por WhatsApp
-                  </a>
-                </div>
               </div>
+
+              {/* Info */}
               <h3 className="text-2xl font-semibold text-foreground mb-1">{hero.name}</h3>
               <p className="text-primary text-xs uppercase tracking-widest">{hero.material}</p>
-              <p className="text-cx-rolling-stone text-sm mt-1">${hero.price.toLocaleString()}</p>
+              <p className="text-cx-rolling-stone text-sm mt-1 mb-5">${hero.price.toLocaleString()}</p>
+
+              {/* CTA — always visible, primary tier */}
+              <a
+                href={heroWaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-3 bg-cx-walnut text-primary-foreground text-xs uppercase tracking-widest text-center hover:opacity-80 active:scale-95 transition-all duration-300"
+              >
+                Consultar por WhatsApp
+              </a>
             </div>
           </Reveal>
 

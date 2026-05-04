@@ -63,7 +63,11 @@ export function ProcessSection() {
         </div>
 
         <Reveal className="mt-16" delay={200}>
-          <Button variant="dark" className="px-12 py-4">
+          <Button
+            variant="dark"
+            className="px-12 py-4"
+            onClick={() => document.getElementById('nuestra-historia')?.scrollIntoView({ behavior: 'smooth' })}
+          >
             Conoce más sobre nosotros
           </Button>
         </Reveal>

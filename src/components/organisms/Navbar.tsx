@@ -1,15 +1,49 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Icon } from '../atoms/Icon';
 import { NavLink } from '../atoms/NavLink';
 
 const navLinks = [
-  { label: 'Muebles', href: '#', active: true },
-  { label: 'Sobre Nosotros', href: '#', active: false },
-  { label: 'Contáctanos', href: '#', active: false },
+  { label: 'Muebles',        href: '#muebles',         sections: ['novedades', 'muebles'] },
+  { label: 'Sobre Nosotros', href: '#nuestra-historia', sections: ['nuestra-historia']     },
+  { label: 'Contáctanos',    href: '#contacto',         sections: ['contacto']             },
 ];
+
+const scrollTo = (id: string) =>
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState('#muebles');
+
+  useEffect(() => {
+    // Map each section id → which nav href it belongs to
+    const sectionMap: Record<string, string> = {};
+    navLinks.forEach(link => {
+      link.sections.forEach(id => { sectionMap[id] = link.href; });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Pick the intersecting entry closest to the top of the viewport
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) {
+          const mapped = sectionMap[visible[0].target.id];
+          if (mapped) setActiveHref(mapped);
+        }
+      },
+      // Active zone: below the 80px navbar, top 55% of viewport
+      { rootMargin: '-80px 0px -45% 0px', threshold: 0 },
+    );
+
+    Object.keys(sectionMap).forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <nav
@@ -25,26 +59,28 @@ export function Navbar() {
         {/* Desktop links */}
         <div className="hidden md:flex items-center space-x-12">
           {navLinks.map((link) => (
-            <NavLink key={link.label} href={link.href} active={link.active}>
+            <NavLink
+              key={link.label}
+              href={link.href}
+              active={activeHref === link.href}
+            >
               {link.label}
             </NavLink>
           ))}
         </div>
 
         <div className="flex items-center space-x-4">
+          {/* Desktop CTA */}
           <button
             type="button"
-            aria-label="Buscar"
-            className="text-foreground hover:opacity-70 transition-opacity"
+            onClick={() => scrollTo('muebles')}
+            className="hidden md:block bg-muted text-cx-walnut px-6 py-2.5 uppercase tracking-widest text-xs font-medium transition-all duration-500 hover:opacity-70 active:scale-95"
           >
-            <Icon name="search" />
-          </button>
-          {/* Desktop CTA */}
-          <button type="button" className="hidden md:block bg-muted text-cx-walnut px-6 py-2.5 uppercase tracking-widest text-xs font-medium transition-all duration-500 hover:opacity-70 active:scale-95">
             Ver Catálogo
           </button>
           {/* Mobile hamburger */}
           <button
+            type="button"
             className="md:hidden text-foreground hover:opacity-70 transition-opacity p-1"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
@@ -71,13 +107,17 @@ export function Navbar() {
             <NavLink
               key={link.label}
               href={link.href}
-              active={link.active}
+              active={activeHref === link.href}
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
             </NavLink>
           ))}
-          <button className="bg-muted text-cx-walnut py-3 uppercase tracking-widest text-xs font-medium w-full hover:opacity-70 transition-opacity">
+          <button
+            type="button"
+            onClick={() => { scrollTo('muebles'); setMobileOpen(false); }}
+            className="bg-muted text-cx-walnut py-3 uppercase tracking-widest text-xs font-medium w-full hover:opacity-70 transition-opacity"
+          >
             Ver Catálogo
           </button>
         </div>

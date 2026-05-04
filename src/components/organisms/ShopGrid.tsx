@@ -4,7 +4,7 @@ import { ShopItem } from '../molecules/ShopItem';
 
 export function ShopGrid() {
   return (
-    <section className="py-24 bg-cx-spring-wood">
+    <section id="muebles" className="py-24 bg-cx-spring-wood scroll-mt-20">
       <div className="max-w-[1200px] mx-auto px-6">
         <Reveal className="text-center mb-16">
           <h2 className="text-[32px] leading-[42px] font-semibold text-foreground mb-4">

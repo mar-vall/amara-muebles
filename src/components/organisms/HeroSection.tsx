@@ -42,7 +42,11 @@ export function HeroSection() {
           <div
             style={{ animation: `fadeUp 0.9s ${EASE} 0.95s both` }}
           >
-            <Button variant="primary" className="px-10 py-4">
+            <Button
+              variant="primary"
+              className="px-10 py-4"
+              onClick={() => document.getElementById('muebles')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Ver Colección
             </Button>
           </div>

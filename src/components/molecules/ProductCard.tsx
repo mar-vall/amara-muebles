@@ -10,8 +10,9 @@ export function ProductCard({ product }: ProductCardProps) {
   const waUrl = productWhatsappUrl(product.name);
 
   return (
-    <div className="group cursor-pointer">
-      <div className={cn('aspect-[4/5] mb-6 overflow-hidden relative', product.placeholderColor)}>
+    <div className="group flex flex-col">
+      {/* Image */}
+      <div className={cn('aspect-[4/5] mb-5 overflow-hidden relative', product.placeholderColor)}>
         {product.imageUrl ? (
           <img
             src={product.imageUrl}
@@ -24,21 +25,22 @@ export function ProductCard({ product }: ProductCardProps) {
         ) : (
           <div className="w-full h-full transition-transform duration-700 group-hover:scale-105" />
         )}
-        <div className="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <a
-            href={waUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full bg-card text-card-foreground px-6 py-3 text-xs uppercase tracking-widest shadow-sm text-center hover:bg-cx-walnut hover:text-primary-foreground transition-colors duration-300"
-            onClick={(e) => e.stopPropagation()}
-          >
-            Consultar por WhatsApp
-          </a>
-        </div>
       </div>
+
+      {/* Info */}
       <h3 className="text-lg font-medium text-foreground mb-1">{product.name}</h3>
       <p className="text-primary text-xs uppercase tracking-widest">{product.material}</p>
-      <p className="text-cx-rolling-stone text-sm mt-1">${product.price.toLocaleString()}</p>
+      <p className="text-cx-rolling-stone text-sm mt-1 mb-5">${product.price.toLocaleString()}</p>
+
+      {/* CTA — always visible, primary tier */}
+      <a
+        href={waUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-auto block w-full py-3 bg-cx-walnut text-primary-foreground text-xs uppercase tracking-widest text-center hover:opacity-80 active:scale-95 transition-all duration-300"
+      >
+        Consultar por WhatsApp
+      </a>
     </div>
   );
 }

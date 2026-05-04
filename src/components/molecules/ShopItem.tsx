@@ -34,7 +34,7 @@ export function ShopItem({ product }: ShopItemProps) {
         href={waUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-auto w-full py-2.5 bg-cx-walnut text-primary-foreground text-xs uppercase tracking-widest text-center hover:opacity-80 transition-opacity duration-300"
+        className="mt-auto w-full py-3 bg-cx-walnut text-primary-foreground text-xs uppercase tracking-widest text-center hover:opacity-80 active:scale-95 transition-all duration-300"
       >
         Consultar por WhatsApp
       </a>

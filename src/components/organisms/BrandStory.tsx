@@ -8,25 +8,21 @@ const materials = [
 
 export function BrandStory() {
   return (
-    <section className="flex flex-col md:flex-row items-stretch" style={{ minHeight: '680px' }}>
+    <section id="nuestra-historia" className="flex flex-col md:flex-row items-stretch scroll-mt-20" style={{ minHeight: '680px' }}>
 
-      {/* Left: teak placeholder with identity layer */}
+      {/* Left: craftsman image with identity layer */}
       <Reveal className="w-full md:w-[42%] min-h-[300px] md:min-h-0" direction="none">
         <div className="bg-cx-teak w-full h-full min-h-[300px] relative overflow-hidden flex items-center justify-center">
-          {/* Brand watermark */}
-          <span
-            className="text-primary-foreground font-black select-none pointer-events-none absolute inset-0 flex items-center justify-center"
-            style={{ fontSize: 'clamp(80px, 17vw, 160px)', opacity: 0.07, letterSpacing: '-0.04em' }}
-            aria-hidden="true"
-          >
-            AMARA
-          </span>
-          {/* Provenance tag */}
-          <div className="absolute bottom-8 left-8">
-            <p className="text-primary-foreground/40 text-[10px] uppercase tracking-[0.3em]">
-              Hecho en Bolivia
-            </p>
-          </div>
+          {/* Craftsman photo */}
+          <img
+            src="https://images.unsplash.com/photo-1631396326646-c06a935ff3a6?w=900&q=85&fit=crop&auto=format"
+            alt="Maestro artesano trabajando la madera"
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
+            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+          />
+          {/* Warm teak tint overlay */}
         </div>
       </Reveal>
 
