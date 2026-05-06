@@ -6,11 +6,12 @@ import { TrustSection } from '../organisms/TrustSection';
 import { Footer } from '../organisms/Footer';
 import { CatalogProductCard } from '../molecules/CatalogProductCard';
 import { products } from '../../data/mockData';
+import { Navbar } from '../organisms/Navbar';
 
 export const CatalogTemplate: React.FC = () => {
   return (
     <div className="min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground">
-      <TopNavBar />
+      <Navbar />
       
       <main className="pt-32 pb-20 max-w-[1200px] mx-auto px-6">
         {/* Page Header */}
