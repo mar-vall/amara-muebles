@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Icon } from '../atoms/Icon';
 import { NavLink } from '../atoms/NavLink';
+import { useNavigate } from 'react-router-dom';
 
 const navLinks = [
   { label: 'Muebles',        href: '#muebles',         sections: ['novedades', 'muebles'] },
@@ -14,6 +15,7 @@ const scrollTo = (id: string) =>
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeHref, setActiveHref] = useState('#muebles');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Map each section id → which nav href it belongs to
@@ -73,7 +75,7 @@ export function Navbar() {
           {/* Desktop CTA */}
           <button
             type="button"
-            onClick={() => scrollTo('muebles')}
+            onClick={() => navigate('/catalog')}
             className="hidden md:block bg-muted text-cx-walnut px-6 py-2.5 uppercase tracking-widest text-xs font-medium transition-all duration-500 hover:opacity-70 active:scale-95"
           >
             Ver Catálogo
@@ -115,7 +117,10 @@ export function Navbar() {
           ))}
           <button
             type="button"
-            onClick={() => { scrollTo('muebles'); setMobileOpen(false); }}
+            onClick={() => {
+              navigate('/catalog');
+              setMobileOpen(false);
+            }}
             className="bg-muted text-cx-walnut py-3 uppercase tracking-widest text-xs font-medium w-full hover:opacity-70 transition-opacity"
           >
             Ver Catálogo
