@@ -4,9 +4,9 @@ import { HeroSection } from '../components/organisms/HeroSection';
 import { TrustBar } from '../components/organisms/TrustBar';
 import { FeaturedProducts } from '../components/organisms/FeaturedProducts';
 import { ShopGrid } from '../components/organisms/ShopGrid';
+import { BrandStory } from '../components/organisms/BrandStory';
 import { ProcessSection } from '../components/organisms/ProcessSection';
 import { B2BSection } from '../components/organisms/B2BSection';
-import { BrandStory } from '../components/organisms/BrandStory';
 import { TestimonialsSection } from '../components/organisms/TestimonialsSection';
 import { ContactSection } from '../components/organisms/ContactSection';
 import { Footer } from '../components/organisms/Footer';
@@ -20,9 +20,9 @@ export function FurnitureStorePage() {
         <TrustBar />
         <FeaturedProducts />
         <ShopGrid />
+        <BrandStory />
         <ProcessSection />
         <B2BSection />
-        <BrandStory />
         <TestimonialsSection />
         <ContactSection />
       </main>

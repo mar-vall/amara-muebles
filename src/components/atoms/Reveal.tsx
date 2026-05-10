@@ -41,7 +41,7 @@ export function Reveal({ children, className, delay = 0, direction = 'up' }: Rev
       )}
       style={{
         transitionProperty: 'opacity, transform',
-        transitionDuration: '700ms',
+        transitionDuration: 'var(--cx-transition-duration)',
         transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)',
         transitionDelay: `${delay}ms`,
       }}

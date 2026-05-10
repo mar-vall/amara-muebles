@@ -41,12 +41,20 @@ export function FeaturedProducts() {
                     alt={hero.name}
                     loading="eager"
                     decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover"
                     onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
                   />
                 ) : (
-                  <div className="w-full h-full transition-transform duration-700 group-hover:scale-105" />
+                  <div className="w-full h-full" />
                 )}
+
+                {/* Hover overlay — fades in, text slides up from bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-[opacity,transform] duration-300 pointer-events-none">
+                  <p className="text-white text-sm uppercase tracking-widest">{hero.name}</p>
+                  <p className="text-white/70 text-xs uppercase tracking-widest mt-1">Ver más →</p>
+                </div>
+
                 <div className="absolute top-6 left-6">
                   <span className="text-[9px] uppercase tracking-[0.25em] bg-background px-3 py-1.5 font-medium">
                     Destacado
@@ -64,7 +72,7 @@ export function FeaturedProducts() {
                 href={heroWaUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full py-3 bg-cx-walnut text-primary-foreground text-xs uppercase tracking-widest text-center hover:opacity-80 active:scale-95 transition-all duration-300"
+                className="block w-full py-3 bg-cx-walnut text-primary-foreground text-xs uppercase tracking-widest text-center hover:opacity-80 active:scale-95 transition-[opacity,transform] duration-300"
               >
                 Consultar por WhatsApp
               </a>
@@ -74,8 +82,9 @@ export function FeaturedProducts() {
           {/* Supporting products — stacked in col 3 */}
           <div className="flex flex-col gap-8">
             {supporting.map((product, i) => (
+              /* Stagger step: 110ms per item (design-system var not applicable here — delay is JS-computed) */
               <Reveal key={product.id} delay={(i + 1) * 110}>
-                <ProductCard product={product} />
+                <ProductCard product={product} compact />
               </Reveal>
             ))}
           </div>

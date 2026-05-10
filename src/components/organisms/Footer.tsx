@@ -54,9 +54,9 @@ export function Footer() {
             Hecho en Bolivia. Cada pieza tarda entre tres y seis semanas.
           </p>
           <div>
-            <h4 className="text-[10px] uppercase tracking-[0.25em] text-foreground mb-4 font-semibold">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-foreground mb-4 font-semibold">
               Síguenos
-            </h4>
+            </p>
             <div className="flex space-x-4">
               {socialLinks.map((item) => (
                 <a
@@ -75,9 +75,9 @@ export function Footer() {
         {/* Showrooms */}
         {showrooms.map((s) => (
           <div key={s.city}>
-            <h4 className="text-[10px] uppercase tracking-[0.25em] text-foreground mb-5 font-semibold">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-foreground mb-5 font-semibold">
               {s.city}
-            </h4>
+            </p>
             <div className="space-y-2 mb-5">
               <p className="text-sm text-muted-foreground">{s.address}</p>
               <p className="text-sm text-muted-foreground">{s.hours}</p>
