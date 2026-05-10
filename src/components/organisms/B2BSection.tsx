@@ -76,17 +76,17 @@ export function B2BSection() {
                 </p>
               </div>
               <div>
+                <p className="text-sm text-primary-foreground/70 mb-6">
+                  Te respondemos en menos de 24 horas.
+                </p>
                 <a
                   href={waUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full py-4 bg-primary-foreground text-cx-walnut text-xs uppercase tracking-widest text-center font-semibold hover:opacity-90 active:scale-95 transition-all duration-300"
+                  className="block w-full py-4 bg-primary-foreground text-cx-walnut text-xs uppercase tracking-widest text-center font-semibold hover:opacity-90 active:scale-95 transition-[opacity,transform] duration-300"
                 >
                   Consultar mi proyecto
                 </a>
-                <p className="text-[11px] text-primary-foreground/40 text-center mt-4 uppercase tracking-wider">
-                  Respuesta por WhatsApp en menos de 24 h
-                </p>
               </div>
             </div>
           </Reveal>

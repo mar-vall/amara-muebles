@@ -12,7 +12,7 @@ export function TestimonialCard({ quote, author }: TestimonialCardProps) {
         <StarRating className="mb-6" />
         <p className="text-sm text-foreground italic mb-8 leading-relaxed">"{quote}"</p>
       </div>
-      <p className="text-xs uppercase tracking-wider text-primary">— {author}</p>
+      <p className="text-xs uppercase tracking-wider text-primary">{author}</p>
     </div>
   );
 }

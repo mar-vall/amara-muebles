@@ -1,4 +1,5 @@
 import { Reveal } from '../atoms/Reveal';
+import { contactWhatsappUrl } from '../../lib/whatsapp';
 
 const materials = [
   { wood: 'Nogal', origin: 'Valle de Cochabamba' },
@@ -41,11 +42,7 @@ export function BrandStory() {
           </h2>
         </Reveal>
 
-        <Reveal className="mb-8" delay={160}>
-          <div className="w-10 h-px bg-primary-foreground/25" />
-        </Reveal>
-
-        <Reveal className="mb-10" delay={240}>
+        <Reveal className="mb-10" delay={160}>
           <p className="text-base leading-relaxed opacity-80">
             En Amara Muebles trabajamos exclusivamente con maderas seleccionadas en los bosques
             certificados del Beni y los valles de Cochabamba. Cada pieza tarda entre tres y seis
@@ -53,30 +50,34 @@ export function BrandStory() {
           </p>
         </Reveal>
 
-        {/* Craftsman profile */}
-        <Reveal className="mb-10" delay={320}>
-          <div className="border-t border-primary-foreground/15 pt-6">
-            <p className="text-sm font-semibold mb-1">Julio Mamani</p>
-            <p className="text-xs opacity-55 leading-relaxed">
-              Maestro tallador · 22 años trabajando el nogal en Santa Cruz de la Sierra
-            </p>
-          </div>
-        </Reveal>
-
         {/* Material origins */}
-        <Reveal delay={400}>
-          <div className="border-t border-primary-foreground/15 pt-6">
+        <Reveal delay={320}>
+          <div className="mt-10">
             <p className="text-[10px] uppercase tracking-[0.25em] opacity-50 mb-4">
-              Maderas de origen
+              De los bosques de Bolivia
             </p>
             <div className="flex flex-wrap gap-x-8 gap-y-3">
               {materials.map((m) => (
                 <div key={m.wood} className="flex items-baseline gap-2">
                   <span className="text-sm font-semibold">{m.wood}</span>
-                  <span className="text-xs opacity-55">{m.origin}</span>
+                  <span className="text-xs opacity-70">{m.origin}</span>
                 </div>
               ))}
             </div>
+          </div>
+        </Reveal>
+
+        {/* WhatsApp CTA */}
+        <Reveal delay={420}>
+          <div className="mt-10 border-t border-primary-foreground/15 pt-6">
+            <a
+              href={contactWhatsappUrl('Hola, me gustaría conversar sobre un mueble para mi hogar.')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors underline underline-offset-4"
+            >
+              Conversemos sobre tu espacio →
+            </a>
           </div>
         </Reveal>
 

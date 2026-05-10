@@ -62,7 +62,7 @@ export function ContactSection() {
 
               <button
                 type="submit"
-                className="w-full bg-cx-walnut text-primary-foreground py-4 text-xs uppercase tracking-widest hover:opacity-80 active:scale-95 transition-all duration-300"
+                className="w-full bg-cx-walnut text-primary-foreground py-4 text-xs uppercase tracking-widest hover:opacity-80 active:scale-95 transition-[opacity,transform] duration-300"
               >
                 Enviar por WhatsApp
               </button>

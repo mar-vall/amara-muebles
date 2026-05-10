@@ -16,12 +16,28 @@ export function ShopGrid() {
           </p>
         </Reveal>
 
+        {/*
+          Desktop layout — 4-column base grid with editorial variation:
+            index 0 → wide (col-span-2, landscape 4/3)
+            index 1 → tall (col-span-1, portrait 3/4)
+            index 2 → tall (col-span-1, portrait 3/4)
+            index 3 → wide (col-span-2, landscape 4/3)
+          This mirrors a row-2 symmetry: wide | [tall tall] / [tall tall] | wide
+          On mobile all cards are single-column, variant only affects aspect ratio.
+        */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-          {shopProducts.map((product, i) => (
-            <Reveal key={product.id} delay={i * 90}>
-              <ShopItem product={product} />
-            </Reveal>
-          ))}
+          {shopProducts.map((product, i) => {
+            const isWide = i === 0 || i === 3;
+            return (
+              <Reveal
+                key={product.id}
+                delay={i * 90}
+                className={isWide ? 'lg:col-span-2' : 'lg:col-span-1'}
+              >
+                <ShopItem product={product} variant={isWide ? 'wide' : 'tall'} />
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

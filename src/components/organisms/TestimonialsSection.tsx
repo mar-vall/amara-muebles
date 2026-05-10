@@ -29,9 +29,9 @@ export function TestimonialsSection() {
         {/* Featured testimonial — full width, editorial weight */}
         <Reveal>
           <div className="border-t border-border pt-12 pb-16 mb-16">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-cx-rolling-stone mb-10 block">
+            <h2 className="text-[10px] uppercase tracking-[0.3em] text-cx-rolling-stone mb-10 block">
               Clientes
-            </span>
+            </h2>
             <p
               className="font-semibold text-foreground leading-[1.2] mb-8 max-w-4xl"
               style={{ fontSize: 'clamp(22px, 3.2vw, 42px)' }}
@@ -41,7 +41,7 @@ export function TestimonialsSection() {
             <div className="flex items-center gap-5">
               <StarRating />
               <span className="text-xs uppercase tracking-[0.2em] text-cx-rolling-stone">
-                — {featured.author}
+                {featured.author}
               </span>
             </div>
           </div>
@@ -57,7 +57,7 @@ export function TestimonialsSection() {
                   "{t.quote}"
                 </p>
                 <p className="text-[10px] uppercase tracking-[0.25em] text-cx-rolling-stone">
-                  — {t.author}
+                  {t.author}
                 </p>
               </div>
             </Reveal>

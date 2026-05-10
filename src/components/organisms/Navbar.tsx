@@ -74,14 +74,14 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => scrollTo('muebles')}
-            className="hidden md:block bg-muted text-cx-walnut px-6 py-2.5 uppercase tracking-widest text-xs font-medium transition-all duration-500 hover:opacity-70 active:scale-95"
+            className="hidden md:block bg-muted text-cx-walnut px-6 py-2.5 uppercase tracking-widest text-xs font-medium transition-opacity duration-300 hover:opacity-70 active:scale-95"
           >
             Ver Catálogo
           </button>
           {/* Mobile hamburger */}
           <button
             type="button"
-            className="md:hidden text-foreground hover:opacity-70 transition-opacity p-1"
+            className="md:hidden text-foreground hover:opacity-70 transition-opacity min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
           >
@@ -92,14 +92,12 @@ export function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className="md:hidden overflow-hidden bg-card border-t border-border"
+        className="md:hidden overflow-hidden bg-card border-t border-border transition-[opacity,transform] duration-300 ease-out"
         style={{
           opacity: mobileOpen ? 1 : 0,
-          transform: mobileOpen ? 'translateY(0)' : 'translateY(-6px)',
-          maxHeight: mobileOpen ? '400px' : '0px',
-          transitionProperty: 'opacity, transform, max-height',
-          transitionDuration: '300ms',
-          transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          transform: mobileOpen ? 'scaleY(1)' : 'scaleY(0)',
+          transformOrigin: 'top',
+          visibility: mobileOpen ? 'visible' : 'hidden',
         }}
       >
         <div className="flex flex-col px-6 py-6 space-y-6">
