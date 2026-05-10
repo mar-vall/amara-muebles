@@ -20,9 +20,19 @@ const variantClasses: Record<ButtonVariant, string> = {
     'border border-cx-rolling-stone text-xs uppercase tracking-widest hover:bg-foreground hover:text-primary-foreground transition-all duration-300',
 };
 
-export function Button({ variant = 'primary', className, children, ...props }: ButtonProps) {
+export function Button({ variant = 'primary', className, href, children, ...props }: ButtonProps & { href?: string }) {
+  const classes = cn(variantClasses[variant], className, 'inline-flex items-center justify-center px-6 py-3 min-h-[44px] min-w-[44px]');
+  
+  if (href) {
+    return (
+      <a href={href} className={classes} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <button className={cn(variantClasses[variant], className)} {...props}>
+    <button className={classes} {...props}>
       {children}
     </button>
   );
