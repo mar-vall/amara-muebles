@@ -150,31 +150,6 @@
   --primary-800: var(--blue-800); --primary-900: var(--blue-900);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background:             oklch(0.1490 0.008 60);
-    --foreground:             oklch(0.9850 0.004 72);
-    --primary:                oklch(0.7800 0.0220 73.50);
-    --primary-foreground:     oklch(0.1490 0.008 60);
-    --secondary:              oklch(0.6800 0.0480 56.00);
-    --secondary-foreground:   oklch(0.9850 0.004 72);
-    --muted:                  oklch(0.2690 0.006 60);
-    --muted-foreground:       oklch(0.7080 0.0060 254.00);
-    --accent:                 oklch(0.3710 0.006 60);
-    --accent-foreground:      oklch(0.9850 0.004 72);
-    --destructive:            oklch(0.6500 0.2200 27.00);
-    --destructive-foreground: oklch(0.9850 0.004 72);
-    --border:                 oklch(0.2750 0.006 60);
-    --input:                  oklch(0.3250 0.006 60);
-    --ring:                   oklch(0.7800 0.0220 73.50);
-    --card:                   oklch(0.2050 0.006 60);
-    --card-foreground:        oklch(0.9850 0.004 72);
-    --popover:                oklch(0.2690 0.006 60);
-    --popover-foreground:     oklch(0.9850 0.004 72);
-
-    /* cx overrides resolve automatically via var() chain */
-  }
-}
 
 @theme inline {
   --color-background:           var(--background);
