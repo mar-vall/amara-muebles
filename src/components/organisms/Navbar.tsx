@@ -90,9 +90,9 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — absolutely positioned so it never affects nav height */}
       <div
-        className="md:hidden overflow-hidden bg-card border-t border-border transition-[opacity,transform] duration-300 ease-out"
+        className="md:hidden absolute top-full left-0 right-0 overflow-hidden bg-card border-t border-border transition-[opacity,transform] duration-300 ease-out"
         style={{
           opacity: mobileOpen ? 1 : 0,
           transform: mobileOpen ? 'scaleY(1)' : 'scaleY(0)',

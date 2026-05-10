@@ -1,5 +1,3 @@
-import { Icon } from '../atoms/Icon';
-
 interface TrustBrandItemProps {
   icon: string;
   name: string;
@@ -7,9 +5,6 @@ interface TrustBrandItemProps {
 
 export function TrustBrandItem({ icon, name }: TrustBrandItemProps) {
   return (
-    <div className="flex items-center space-x-2">
-      <Icon name={icon} size="xl" aria-hidden="true" />
-      <span className="font-bold text-xl">{name}</span>
-    </div>
+    <img src={icon} alt={name} className="h-28 w-auto" style={{ mixBlendMode: 'multiply' }} />
   );
 }

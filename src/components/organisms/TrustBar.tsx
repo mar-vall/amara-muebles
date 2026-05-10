@@ -2,10 +2,8 @@ import { Reveal } from '../atoms/Reveal';
 import { TrustBrandItem } from '../molecules/TrustBrandItem';
 
 const brands = [
-  { icon: 'architecture', name: 'ArchiStudio' },
-  { icon: 'domain', name: 'DesignHaus' },
-  { icon: 'foundation', name: 'Estructura' },
-  { icon: 'apartment', name: 'Habitat Lux' },
+  { iconAddress: '/company_1.svg', name: 'Wistupiku' },
+  { iconAddress: '/company_2.svg', name: 'Constructora Montaño' },
 ];
 
 export function TrustBar() {
@@ -20,7 +18,7 @@ export function TrustBar() {
         <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-50 grayscale">
           {brands.map((brand, i) => (
             <Reveal key={brand.name} delay={i * 80} direction="none">
-              <TrustBrandItem icon={brand.icon} name={brand.name} />
+              <TrustBrandItem icon={brand.iconAddress} name={brand.name} />
             </Reveal>
           ))}
         </div>
