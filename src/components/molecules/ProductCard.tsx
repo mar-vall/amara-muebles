@@ -1,5 +1,6 @@
 import type { Product } from '../../data/products';
 import { productWhatsappUrl } from '../../lib/whatsapp';
+import { ProductImageSlideshow } from '../atoms/ProductImageSlideshow';
 import { cn } from '../../lib/cn';
 
 interface ProductCardProps {
@@ -17,26 +18,9 @@ export function ProductCard({ product, compact = false }: ProductCardProps) {
       <div className={cn(
         'mb-5 overflow-hidden relative',
         compact ? 'aspect-square' : 'aspect-[4/5]',
-        product.placeholderColor,
+        'bg-cx-pampas',
       )}>
-        {product.imageUrl ? (
-          <img
-            src={product.imageUrl}
-            srcSet={[
-              product.imageUrl.replace(/w=\d+/, 'w=400') + ' 400w',
-              product.imageUrl.replace(/w=\d+/, 'w=800') + ' 800w',
-              product.imageUrl.replace(/w=\d+/, 'w=1200') + ' 1200w',
-            ].join(', ')}
-            sizes="(max-width: 768px) 100vw, 33vw"
-            alt={product.name}
-            loading="lazy"
-            decoding="async"
-            className="w-full h-full object-cover"
-            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
-          />
-        ) : (
-          <div className="w-full h-full" />
-        )}
+        <ProductImageSlideshow images={product.images} alt={product.name} />
 
         {/* Hover overlay — fades in, text slides up from bottom */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -49,7 +33,7 @@ export function ProductCard({ product, compact = false }: ProductCardProps) {
       {/* Info */}
       <h3 className="text-lg font-medium text-foreground mb-1">{product.name}</h3>
       <p className="text-primary text-xs uppercase tracking-widest">{product.material}</p>
-      <p className="text-cx-rolling-stone text-sm mt-1 mb-5">${product.price.toLocaleString()}</p>
+      <p className="text-cx-rolling-stone text-sm mt-1 mb-5">Bs. {product.price.toLocaleString()}</p>
 
       {/* CTA — always visible, primary tier */}
       <a
