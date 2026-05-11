@@ -32,7 +32,7 @@ export const products: Product[] = [
     description:
       'Mesa de comedor extensible con tablero de nogal americano de veta continua y patas torneadas. Capacidad para 6 a 10 personas.',
     material: 'Nogal Americano',
-    imageUrl: 'https://images.unsplash.com/photo-1648994517762-15aae4c01ce7?w=1200&q=85&fit=crop&auto=format',
+    imageUrl: '../../public/Products/sillones/foto1.png',
     price: 1340,
     section: 'featured',
     placeholderColor: 'bg-cx-cararra',
