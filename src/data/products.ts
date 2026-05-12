@@ -52,6 +52,9 @@ export const products: Product[] = [
     material: 'Cuero Sintético Premium',
     images: [
       '/Products/Sofas/Sofa3/foto0.webp',
+      '/Products/Sofas/Sofa3/foto1.webp',
+      '/Products/Sofas/Sofa3/foto2.webp',
+      '/Products/Sofas/Sofa3/foto3.webp',
     ],
     price: 5800,
     section: 'shop',
@@ -174,6 +177,9 @@ export const products: Product[] = [
     material: 'Roble Macizo y Tela Antimanchas',
     images: [
       '/Products/Sillas/Silla1/foto0.webp',
+      '/Products/Sillas/Silla1/foto1.webp',
+      '/Products/Sillas/Silla1/foto2.webp',
+      '/Products/Sillas/Silla1/foto3.webp',
     ],
     price: 1850,
     section: 'shop',
@@ -186,6 +192,9 @@ export const products: Product[] = [
     material: 'Haya Natural y Cuero Genuino',
     images: [
       '/Products/Sillas/Silla2/foto0.webp',
+      '/Products/Sillas/Silla2/foto1.webp',
+      '/Products/Sillas/Silla2/foto2.webp',
+      '/Products/Sillas/Silla2/foto3.webp',
     ],
     price: 1650,
     section: 'shop',
@@ -198,6 +207,9 @@ export const products: Product[] = [
     material: 'Madera Lacada y Terciopelo',
     images: [
       '/Products/Sillas/Silla3/foto0.webp',
+      '/Products/Sillas/Silla3/foto1.webp',
+      '/Products/Sillas/Silla3/foto2.webp',
+      '/Products/Sillas/Silla3/foto3.webp',
     ],
     price: 1950,
     section: 'shop',
@@ -227,6 +239,9 @@ export const products: Product[] = [
     material: 'Tela Bouclé y Caoba',
     images: [
       '/Products/Sillones/Sillon2/foto0.webp',
+      '/Products/Sillones/Sillon2/foto1.webp',
+      '/Products/Sillones/Sillon2/foto2.webp',
+      '/Products/Sillones/Sillon2/foto3.webp',
     ],
     price: 5200,
     section: 'shop',
@@ -239,6 +254,9 @@ export const products: Product[] = [
     material: 'Terciopelo Esmeralda y Metal Dorado',
     images: [
       '/Products/Sillones/Sillon3/foto0.webp',
+      '/Products/Sillones/Sillon3/foto1.webp',
+      '/Products/Sillones/Sillon3/foto2.webp',
+      '/Products/Sillones/Sillon3/foto3.webp',
     ],
     price: 7400,
     section: 'shop',
