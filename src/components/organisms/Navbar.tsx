@@ -4,8 +4,14 @@ import { NavLink } from '../atoms/NavLink';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const scrollTo = (id: string) => {
-  document.getElementById(id)?.scrollIntoView({
-    behavior: 'smooth',
+  requestAnimationFrame(() => {
+    const element = document.getElementById(id);
+
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
   });
 };
 
@@ -56,28 +62,37 @@ export function Navbar() {
     );
 
     Object.keys(sectionMap).forEach((id) => {
-      const el = document.getElementById(id);
+      const element = document.getElementById(id);
 
-      if (el) {
-        observer.observe(el);
+      if (element) {
+        observer.observe(element);
       }
     });
 
     return () => observer.disconnect();
   }, [isHome]);
 
-  const handleSectionClick = (
+  const handleNavigateToSection = async (
     e: MouseEvent<HTMLAnchorElement>,
     sectionId: string,
     href: string,
   ) => {
     e.preventDefault();
 
-    if (!isHome) return;
-
     setActiveHref(href);
-    scrollTo(sectionId);
     setMobileOpen(false);
+
+    if (!isHome) {
+      navigate('/');
+
+      setTimeout(() => {
+        scrollTo(sectionId);
+      }, 100);
+
+      return;
+    }
+
+    scrollTo(sectionId);
   };
 
   return (
@@ -90,7 +105,6 @@ export function Navbar() {
     >
       {/* Main bar */}
       <div className="flex justify-between items-center max-w-[1200px] mx-auto px-6 h-20">
-        {/* Logo */}
         <button
           type="button"
           onClick={() => {
@@ -112,7 +126,11 @@ export function Navbar() {
             href="#muebles"
             active={activeHref === '#muebles'}
             onClick={(e) =>
-              handleSectionClick(e, 'muebles', '#muebles')
+              handleNavigateToSection(
+                e,
+                'muebles',
+                '#muebles',
+              )
             }
           >
             Muebles
@@ -132,8 +150,12 @@ export function Navbar() {
           <NavLink
             href="#contacto"
             active={activeHref === '#contacto'}
-            onClick={(e: MouseEvent<HTMLAnchorElement>) =>
-              handleSectionClick(e, 'contacto', '#contacto')
+            onClick={(e) =>
+              handleNavigateToSection(
+                e,
+                'contacto',
+                '#contacto',
+              )
             }
           >
             Contáctanos
@@ -181,7 +203,11 @@ export function Navbar() {
             href="#muebles"
             active={activeHref === '#muebles'}
             onClick={(e) =>
-              handleSectionClick(e, 'muebles', '#muebles')
+              handleNavigateToSection(
+                e,
+                'muebles',
+                '#muebles',
+              )
             }
           >
             Muebles
@@ -203,7 +229,11 @@ export function Navbar() {
             href="#contacto"
             active={activeHref === '#contacto'}
             onClick={(e) =>
-              handleSectionClick(e, 'contacto', '#contacto')
+              handleNavigateToSection(
+                e,
+                'contacto',
+                '#contacto',
+              )
             }
           >
             Contáctanos
