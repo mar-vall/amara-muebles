@@ -125,7 +125,7 @@ export function Navbar() {
           <NavLink
             href="#muebles"
             active={activeHref === '#muebles'}
-            onClick={(e) =>
+            onClick={(e: MouseEvent<HTMLAnchorElement>) =>
               handleNavigateToSection(
                 e,
                 'muebles',
@@ -139,7 +139,7 @@ export function Navbar() {
           <NavLink
             href="/about-us"
             active={isAboutUs}
-            onClick={(e) => {
+            onClick={(e: MouseEvent<HTMLAnchorElement>) => {
               e.preventDefault();
               navigate('/about-us');
             }}
@@ -150,7 +150,7 @@ export function Navbar() {
           <NavLink
             href="#contacto"
             active={activeHref === '#contacto'}
-            onClick={(e) =>
+            onClick={(e: MouseEvent<HTMLAnchorElement>) =>
               handleNavigateToSection(
                 e,
                 'contacto',
@@ -202,7 +202,7 @@ export function Navbar() {
           <NavLink
             href="#muebles"
             active={activeHref === '#muebles'}
-            onClick={(e) =>
+            onClick={(e: MouseEvent<HTMLAnchorElement>) =>
               handleNavigateToSection(
                 e,
                 'muebles',
@@ -216,7 +216,7 @@ export function Navbar() {
           <NavLink
             href="/about-us"
             active={isAboutUs}
-            onClick={(e) => {
+            onClick={(e: MouseEvent<HTMLAnchorElement>) => {
               e.preventDefault();
               navigate('/about-us');
               setMobileOpen(false);
@@ -228,7 +228,7 @@ export function Navbar() {
           <NavLink
             href="#contacto"
             active={activeHref === '#contacto'}
-            onClick={(e) =>
+            onClick={(e: MouseEvent<HTMLAnchorElement>) =>
               handleNavigateToSection(
                 e,
                 'contacto',

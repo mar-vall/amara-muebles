@@ -5,7 +5,7 @@ interface NavLinkProps {
   active?: boolean;
   children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
 export function NavLink({ href = '#', active = false, children, className, onClick }: NavLinkProps) {
