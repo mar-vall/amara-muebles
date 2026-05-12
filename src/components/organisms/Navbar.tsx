@@ -1,76 +1,143 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState, type MouseEvent } from 'react';
 import { Icon } from '../atoms/Icon';
 import { NavLink } from '../atoms/NavLink';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const navLinks = [
-  { label: 'Muebles',        href: '#muebles',         sections: ['novedades', 'muebles'] },
-  { label: 'Sobre Nosotros', href: '#nuestra-historia', sections: ['nuestra-historia']     },
-  { label: 'Contáctanos',    href: '#contacto',         sections: ['contacto']             },
-];
-
-const scrollTo = (id: string) =>
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+const scrollTo = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({
+    behavior: 'smooth',
+  });
+};
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeHref, setActiveHref] = useState('#muebles');
+
   const navigate = useNavigate();
   const location = useLocation();
+
+  const isHome = location.pathname === '/';
   const isCatalog = location.pathname === '/catalog';
+  const isAboutUs = location.pathname === '/about-us';
 
   useEffect(() => {
-    // Map each section id → which nav href it belongs to
-    const sectionMap: Record<string, string> = {};
-    navLinks.forEach(link => {
-      link.sections.forEach(id => { sectionMap[id] = link.href; });
-    });
+    if (!isHome) {
+      setActiveHref('');
+      return;
+    }
+
+    const sectionMap: Record<string, string> = {
+      novedades: '#muebles',
+      muebles: '#muebles',
+      contacto: '#contacto',
+    };
 
     const observer = new IntersectionObserver(
       (entries) => {
-        // Pick the intersecting entry closest to the top of the viewport
         const visible = entries
-          .filter(e => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) =>
+              a.boundingClientRect.top - b.boundingClientRect.top,
+          );
+
         if (visible.length > 0) {
           const mapped = sectionMap[visible[0].target.id];
-          if (mapped) setActiveHref(mapped);
+
+          if (mapped) {
+            setActiveHref(mapped);
+          }
         }
       },
-      // Active zone: below the 80px navbar, top 55% of viewport
-      { rootMargin: '-80px 0px -45% 0px', threshold: 0 },
+      {
+        rootMargin: '-80px 0px -45% 0px',
+        threshold: 0,
+      },
     );
 
-    Object.keys(sectionMap).forEach(id => {
+    Object.keys(sectionMap).forEach((id) => {
       const el = document.getElementById(id);
-      if (el) observer.observe(el);
+
+      if (el) {
+        observer.observe(el);
+      }
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [isHome]);
+
+  const handleSectionClick = (
+    e: MouseEvent<HTMLAnchorElement>,
+    sectionId: string,
+    href: string,
+  ) => {
+    e.preventDefault();
+
+    if (!isHome) return;
+
+    setActiveHref(href);
+    scrollTo(sectionId);
+    setMobileOpen(false);
+  };
 
   return (
     <nav
       className="fixed top-0 w-full z-50 bg-card border-b border-border"
-      style={{ animation: 'navSlideDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) both' }}
+      style={{
+        animation:
+          'navSlideDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) both',
+      }}
     >
       {/* Main bar */}
       <div className="flex justify-between items-center max-w-[1200px] mx-auto px-6 h-20">
-        <a href="#" className="flex items-center active:scale-95 transition-transform">
-          <img src="/logo.svg" alt="Amara Muebles" className="h-10 w-auto" />
-        </a>
+        {/* Logo */}
+        <button
+          type="button"
+          onClick={() => {
+            navigate('/');
+            setMobileOpen(false);
+          }}
+          className="flex items-center active:scale-95 transition-transform"
+        >
+          <img
+            src="/logo.svg"
+            alt="Amara Muebles"
+            className="h-10 w-auto"
+          />
+        </button>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center space-x-12">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.label}
-              href={link.href}
-              active={activeHref === link.href}
-            >
-              {link.label}
-            </NavLink>
-          ))}
+          <NavLink
+            href="#muebles"
+            active={activeHref === '#muebles'}
+            onClick={(e) =>
+              handleSectionClick(e, 'muebles', '#muebles')
+            }
+          >
+            Muebles
+          </NavLink>
+
+          <NavLink
+            href="/about-us"
+            active={isAboutUs}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate('/about-us');
+            }}
+          >
+            Sobre Nosotros
+          </NavLink>
+
+          <NavLink
+            href="#contacto"
+            active={activeHref === '#contacto'}
+            onClick={(e: MouseEvent<HTMLAnchorElement>) =>
+              handleSectionClick(e, 'contacto', '#contacto')
+            }
+          >
+            Contáctanos
+          </NavLink>
         </div>
 
         <div className="flex items-center space-x-4">
@@ -86,6 +153,7 @@ export function Navbar() {
           >
             Ver Catálogo
           </button>
+
           {/* Mobile hamburger */}
           <button
             type="button"
@@ -98,7 +166,7 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu — absolutely positioned so it never affects nav height */}
+      {/* Mobile menu */}
       <div
         className="md:hidden absolute top-full left-0 right-0 overflow-hidden bg-card border-t border-border transition-[opacity,transform] duration-300 ease-out"
         style={{
@@ -109,16 +177,38 @@ export function Navbar() {
         }}
       >
         <div className="flex flex-col px-6 py-6 space-y-6">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.label}
-              href={link.href}
-              active={activeHref === link.href}
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </NavLink>
-          ))}
+          <NavLink
+            href="#muebles"
+            active={activeHref === '#muebles'}
+            onClick={(e) =>
+              handleSectionClick(e, 'muebles', '#muebles')
+            }
+          >
+            Muebles
+          </NavLink>
+
+          <NavLink
+            href="/about-us"
+            active={isAboutUs}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate('/about-us');
+              setMobileOpen(false);
+            }}
+          >
+            Sobre Nosotros
+          </NavLink>
+
+          <NavLink
+            href="#contacto"
+            active={activeHref === '#contacto'}
+            onClick={(e) =>
+              handleSectionClick(e, 'contacto', '#contacto')
+            }
+          >
+            Contáctanos
+          </NavLink>
+
           <button
             type="button"
             onClick={() => {
