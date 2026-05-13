@@ -21,10 +21,10 @@ export const products: Product[] = [
       'Sofá de tres plazas con estructura interna de eucalipto, tapizado en lino natural de alta resistencia. Cojines de espuma HR de 30 kg/m³ con funda removible. Diseño de líneas limpias que se adapta a espacios contemporáneos.',
     material: 'Eucalipto y Lino Natural',
     images: [
-      '/Products/Sofas/Sofa1/foto0.webp',
       '/Products/Sofas/Sofa1/foto1.webp',
       '/Products/Sofas/Sofa1/foto2.webp',
       '/Products/Sofas/Sofa1/foto3.webp',
+      '/Products/Sofas/Sofa1/foto0.webp',
     ],
     price: 8500,
     section: 'featured',

@@ -5,7 +5,7 @@ const steps = [
   {
     title: 'Materiales',
     description:
-      'Seleccionamos maderas certificadas de bosques sostenibles, priorizando el Roble, Nogal y Teca.',
+      'Seleccionamos maderas de [Lugar], priorizando el [Tipos de madera] por su belleza y durabilidad.',
   },
   {
     title: 'Diseño',
@@ -15,7 +15,7 @@ const steps = [
   {
     title: 'Entrega',
     description:
-      'Cada pieza viaja protegida y con garantía de origen hasta la puerta de tu hogar.',
+      'El envio se coordina directamente contigo para asegurar que tu mueble llegue en perfectas condiciones y a tiempo.',
   },
 ];
 

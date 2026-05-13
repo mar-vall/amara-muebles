@@ -3,21 +3,13 @@ import { Icon } from '../atoms/Icon';
 
 const showrooms = [
   {
-    city: 'Santa Cruz de la Sierra',
-    address: 'Av. San Martín 450, Equipetrol Norte',
+    city: 'Cochabamba',
+    address: 'Av. Blanco Galindo 123',
     hours: 'Lun–Vie 9:00–19:00 · Sáb 10:00–15:00',
-    phone: '+591 3 333 4455',
+    phone: '+591 79785827',
     mapsUrl:
       'https://maps.google.com/?q=Av.+San+Martín+450,+Equipetrol+Norte,+Santa+Cruz+de+la+Sierra,+Bolivia',
-  },
-  {
-    city: 'La Paz',
-    address: 'Calle Colón 780, Sopocachi',
-    hours: 'Lun–Vie 9:00–18:30 · Sáb 10:00–14:00',
-    phone: '+591 2 211 6677',
-    mapsUrl:
-      'https://maps.google.com/?q=Calle+Colón+780,+Sopocachi,+La+Paz,+Bolivia',
-  },
+  }
 ];
 
 const socialLinks = [
@@ -35,10 +27,10 @@ export function Footer() {
         <div className="max-w-[1200px] mx-auto px-6 pt-16 pb-12 border-b border-border">
           <p className="font-semibold text-foreground italic leading-snug mb-3"
             style={{ fontSize: 'clamp(18px, 2.2vw, 26px)' }}>
-            "Cada veta cuenta una historia."
+            "El arte en tu hogar"
           </p>
           <p className="text-[10px] uppercase tracking-[0.25em] text-cx-rolling-stone">
-            Julio Mamani · Maestro tallador · Amara Muebles · Santa Cruz de la Sierra
+            Amara Muebles · Cochabamba, Bolivia
           </p>
         </div>
       </Reveal>

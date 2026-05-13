@@ -1,28 +1,19 @@
 import type { Product } from '../../data/products';
 import { productWhatsappUrl } from '../../lib/whatsapp';
-import { ProductImageSlideshow } from '../atoms/ProductImageSlideshow';
-import { cn } from '../../lib/cn';
 
-interface ProductCardProps {
-  product: Product;
-  /** When true, uses a compact square aspect ratio — used for supporting cards alongside a hero */
-  compact?: boolean;
-}
-
-export function ProductCard({ product, compact = false }: ProductCardProps) {
+export function ProductCard({ product }: { product: Product }) {
   const waUrl = productWhatsappUrl(product.name);
+  const src = product.images[1] ?? product.images[0];
 
   return (
     <div className="group flex flex-col">
-      {/* Image */}
-      <div className={cn(
-        'mb-5 overflow-hidden relative',
-        compact ? 'aspect-square' : 'aspect-[4/5]',
-        'bg-cx-pampas',
-      )}>
-        <ProductImageSlideshow images={product.images} alt={product.name} />
+      <div className="aspect-[4/3] mb-5 overflow-hidden relative bg-cx-pampas">
+        <img
+          src={src}
+          alt={product.name}
+          className="w-full h-full object-cover object-center"
+        />
 
-        {/* Hover overlay — fades in, text slides up from bottom */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
         <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-[opacity,transform] duration-300 pointer-events-none">
           <p className="text-white text-xs uppercase tracking-widest">{product.name}</p>
@@ -30,12 +21,10 @@ export function ProductCard({ product, compact = false }: ProductCardProps) {
         </div>
       </div>
 
-      {/* Info */}
       <h3 className="text-lg font-medium text-foreground mb-1">{product.name}</h3>
       <p className="text-primary text-xs uppercase tracking-widest">{product.material}</p>
       <p className="text-cx-rolling-stone text-sm mt-1 mb-5">Bs. {product.price.toLocaleString()}</p>
 
-      {/* CTA — always visible, primary tier */}
       <a
         href={waUrl}
         target="_blank"
