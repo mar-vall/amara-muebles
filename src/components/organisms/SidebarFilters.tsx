@@ -1,6 +1,18 @@
 import React from 'react';
 import { FilterGroup } from '../molecules/FilterGroup';
-import { filterCategories } from '../../data/mockData';
+
+const filterCategories = [
+  {
+    title: 'Categorías',
+    options: [
+      { label: 'Sofás',     count: 3,  checked: false },
+      { label: 'Comedores', count: 4,  checked: false },
+      { label: 'Mesas',     count: 3,  checked: false },
+      { label: 'Sillas',    count: 3,  checked: false },
+      { label: 'Sillones',  count: 3,  checked: false },
+    ],
+  },
+];
 
 export const SidebarFilters: React.FC = () => {
   return (

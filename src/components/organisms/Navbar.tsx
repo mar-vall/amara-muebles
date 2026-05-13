@@ -35,6 +35,7 @@ export function Navbar() {
     const sectionMap: Record<string, string> = {
       novedades: '#muebles',
       muebles: '#muebles',
+      'nuestra-historia': '#sobre-nosotros',
       contacto: '#contacto',
     };
 
@@ -137,12 +138,11 @@ export function Navbar() {
           </NavLink>
 
           <NavLink
-            href="/about-us"
-            active={isAboutUs}
-            onClick={(e: MouseEvent<HTMLAnchorElement>) => {
-              e.preventDefault();
-              navigate('/about-us');
-            }}
+            href="#sobre-nosotros"
+            active={activeHref === '#sobre-nosotros'}
+            onClick={(e: MouseEvent<HTMLAnchorElement>) =>
+              handleNavigateToSection(e, 'nuestra-historia', '#sobre-nosotros')
+            }
           >
             Sobre Nosotros
           </NavLink>
@@ -151,11 +151,7 @@ export function Navbar() {
             href="#contacto"
             active={activeHref === '#contacto'}
             onClick={(e: MouseEvent<HTMLAnchorElement>) =>
-              handleNavigateToSection(
-                e,
-                'contacto',
-                '#contacto',
-              )
+              handleNavigateToSection(e, 'contacto', '#contacto')
             }
           >
             Contáctanos
@@ -214,13 +210,11 @@ export function Navbar() {
           </NavLink>
 
           <NavLink
-            href="/about-us"
-            active={isAboutUs}
-            onClick={(e: MouseEvent<HTMLAnchorElement>) => {
-              e.preventDefault();
-              navigate('/about-us');
-              setMobileOpen(false);
-            }}
+            href="#sobre-nosotros"
+            active={activeHref === '#sobre-nosotros'}
+            onClick={(e: MouseEvent<HTMLAnchorElement>) =>
+              handleNavigateToSection(e, 'nuestra-historia', '#sobre-nosotros')
+            }
           >
             Sobre Nosotros
           </NavLink>

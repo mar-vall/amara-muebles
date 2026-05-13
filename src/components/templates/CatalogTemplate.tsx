@@ -5,7 +5,7 @@ import { PromoBanner } from '../organisms/PromoBanner';
 import { TrustSection } from '../organisms/TrustSection';
 import { Footer } from '../organisms/Footer';
 import { CatalogProductCard } from '../molecules/CatalogProductCard';
-import { products } from '../../data/mockData';
+import { products } from '../../data/products';
 import { Navbar } from '../organisms/Navbar';
 
 export const CatalogTemplate: React.FC = () => {
