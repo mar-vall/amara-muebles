@@ -16,7 +16,7 @@ export function BrandStory() {
         <div className="bg-cx-teak w-full h-full min-h-[300px] relative overflow-hidden flex items-center justify-center">
           {/* Craftsman photo */}
           <img
-            src="https://images.unsplash.com/photo-1631396326646-c06a935ff3a6?w=900&q=85&fit=crop&auto=format"
+            src="/Public/AboutUs/image1.webp"
             alt="Maestro artesano trabajando la madera"
             loading="lazy"
             decoding="async"
@@ -38,14 +38,13 @@ export function BrandStory() {
             className="font-black leading-[1.1]"
             style={{ fontSize: 'clamp(32px, 4.2vw, 52px)' }}
           >
-            Cada veta cuenta una historia.
+            Cada mueble cuenta una historia.
           </h2>
         </Reveal>
 
         <Reveal className="mb-10" delay={160}>
           <p className="text-base leading-relaxed opacity-80">
-            En Amara Muebles trabajamos exclusivamente con maderas seleccionadas en los bosques
-            certificados del Beni y los valles de Cochabamba. Cada pieza tarda entre tres y seis
+            En Amara Muebles trabajamos exclusivamente con maderas de alta calidad de [Lugar]. Cada pieza tarda entre tres y seis
             semanas en completarse, respetando los tiempos de la madera, no los de una fábrica.
           </p>
         </Reveal>
@@ -54,7 +53,7 @@ export function BrandStory() {
         <Reveal delay={320}>
           <div className="mt-10">
             <p className="text-[10px] uppercase tracking-[0.25em] opacity-50 mb-4">
-              De los bosques de Bolivia
+              Hecho con madera Boliviana
             </p>
             <div className="flex flex-wrap gap-x-8 gap-y-3">
               {materials.map((m) => (
