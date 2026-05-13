@@ -8,7 +8,7 @@ export const PromoBanner: React.FC = () => {
     <section className="mt-24 mb-16 relative w-full h-[500px] bg-muted rounded overflow-hidden flex items-center">
       <img
         alt={promoData.title}
-        src={promoData.image}
+        src=""
         className="absolute inset-0 w-full h-full object-cover object-center opacity-80 mix-blend-multiply"
       />
       <div className="relative z-10 p-12 md:p-24 max-w-2xl">
