@@ -1,6 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { FurnitureStorePage } from './pages/FurnitureStorePage';
 import { CatalogPage } from './pages/CatalogPage';
+import { ProductDetailPage } from './pages/ProductDetailPage';
+import { ServiciosPage } from './pages/ServiciosPage';
+import { ScrollToTop } from './components/atoms/ScrollToTop';
 import { WHATSAPP_NUMBER } from './config';
 
 const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, me gustaría obtener más información sobre sus muebles.')}`;
@@ -8,8 +11,11 @@ const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola,
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/catalog" element={<CatalogPage />} />
+        <Route path="/servicios" element={<ServiciosPage />} />
+        <Route path="/producto/:id" element={<ProductDetailPage />} />
         <Route path="/" element={<FurnitureStorePage />} />
       </Routes>
 

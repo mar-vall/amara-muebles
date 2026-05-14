@@ -9,6 +9,10 @@ export interface Product {
   price: number;
   /** Which homepage section this product appears in. */
   section: 'featured' | 'shop';
+  /** Physical dimensions (ancho × profundidad × alto). */
+  dimensions: string;
+  /** Approximate weight. */
+  weight: string;
 }
 
 export const products: Product[] = [
@@ -28,6 +32,8 @@ export const products: Product[] = [
     ],
     price: 8500,
     section: 'featured',
+    dimensions: '210 × 92 × 88 cm',
+    weight: '42 kg',
   },
   {
     id: 'sofa-amara-2',
@@ -43,6 +49,8 @@ export const products: Product[] = [
     ],
     price: 14900,
     section: 'shop',
+    dimensions: '280 × 165 × 90 cm',
+    weight: '68 kg',
   },
   {
     id: 'sofa-amara-3',
@@ -58,6 +66,8 @@ export const products: Product[] = [
     ],
     price: 5800,
     section: 'shop',
+    dimensions: '158 × 85 × 82 cm',
+    weight: '28 kg',
   },
 
   // ── Comedores ─────────────────────────────────────────────────────────────
@@ -75,6 +85,8 @@ export const products: Product[] = [
     ],
     price: 22500,
     section: 'featured',
+    dimensions: '180 × 90 × 76 cm',
+    weight: '85 kg',
   },
   {
     id: 'comedor-amara-2',
@@ -91,6 +103,8 @@ export const products: Product[] = [
     ],
     price: 18900,
     section: 'shop',
+    dimensions: '220 × 100 × 78 cm',
+    weight: '112 kg',
   },
   {
     id: 'comedor-amara-3',
@@ -106,6 +120,8 @@ export const products: Product[] = [
     ],
     price: 28000,
     section: 'shop',
+    dimensions: '200 × 95 × 76 cm',
+    weight: '130 kg',
   },
   {
     id: 'comedor-amara-4',
@@ -121,6 +137,8 @@ export const products: Product[] = [
     ],
     price: 21500,
     section: 'shop',
+    dimensions: '190 × 90 × 75 cm',
+    weight: '95 kg',
   },
 
   // ── Mesas ─────────────────────────────────────────────────────────────────
@@ -138,6 +156,8 @@ export const products: Product[] = [
     ],
     price: 9800,
     section: 'shop',
+    dimensions: '160–220 × 90 × 76 cm',
+    weight: '58 kg',
   },
   {
     id: 'mesa-amara-2',
@@ -152,6 +172,8 @@ export const products: Product[] = [
     ],
     price: 7500,
     section: 'shop',
+    dimensions: 'Ø 120 × 76 cm',
+    weight: '32 kg',
   },
   {
     id: 'mesa-amara-3',
@@ -166,6 +188,8 @@ export const products: Product[] = [
     ],
     price: 4200,
     section: 'shop',
+    dimensions: '120 × 60 × 42 cm',
+    weight: '18 kg',
   },
 
   // ── Sillas ────────────────────────────────────────────────────────────────
@@ -183,6 +207,8 @@ export const products: Product[] = [
     ],
     price: 1850,
     section: 'shop',
+    dimensions: '48 × 55 × 92 cm',
+    weight: '6 kg',
   },
   {
     id: 'silla-amara-2',
@@ -198,6 +224,8 @@ export const products: Product[] = [
     ],
     price: 1650,
     section: 'shop',
+    dimensions: '46 × 53 × 90 cm',
+    weight: '5 kg',
   },
   {
     id: 'silla-amara-3',
@@ -213,6 +241,8 @@ export const products: Product[] = [
     ],
     price: 1950,
     section: 'shop',
+    dimensions: '50 × 56 × 95 cm',
+    weight: '7 kg',
   },
 
   // ── Sillones ──────────────────────────────────────────────────────────────
@@ -230,6 +260,8 @@ export const products: Product[] = [
     ],
     price: 6800,
     section: 'featured',
+    dimensions: '85 × 95 × 102 cm',
+    weight: '35 kg',
   },
   {
     id: 'sillon-amara-2',
@@ -245,6 +277,8 @@ export const products: Product[] = [
     ],
     price: 5200,
     section: 'shop',
+    dimensions: '82 × 88 × 110 cm',
+    weight: '28 kg',
   },
   {
     id: 'sillon-amara-3',
@@ -260,6 +294,8 @@ export const products: Product[] = [
     ],
     price: 7400,
     section: 'shop',
+    dimensions: '80 × 82 × 88 cm',
+    weight: '22 kg',
   },
 ];
 

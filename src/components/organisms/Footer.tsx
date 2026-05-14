@@ -12,11 +12,18 @@ const showrooms = [
   }
 ];
 
-const socialLinks = [
-  { icon: 'photo_camera', href: '#', label: 'Instagram' },
-  { icon: 'language',     href: '#', label: 'Facebook' },
-  { icon: 'mail',         href: '#', label: 'Correo electrónico' },
-];
+// Facebook SVG path (official f logo)
+const FacebookIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className="w-5 h-5"
+    aria-hidden="true"
+  >
+    <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.885v2.266h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
+  </svg>
+);
 
 export function Footer() {
   return (
@@ -50,16 +57,15 @@ export function Footer() {
               Síguenos
             </p>
             <div className="flex space-x-4">
-              {socialLinks.map((item) => (
-                <a
-                  key={item.icon}
-                  href={item.href}
-                  aria-label={item.label}
-                  className="text-muted-foreground hover:text-cx-walnut transition-colors"
-                >
-                  <Icon name={item.icon} />
-                </a>
-              ))}
+              <a
+                href="https://www.facebook.com/amaramuebles"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="text-muted-foreground hover:text-cx-walnut transition-colors"
+              >
+                <FacebookIcon />
+              </a>
             </div>
           </div>
         </div>
@@ -97,7 +103,7 @@ export function Footer() {
       {/* Copyright */}
       <div className="max-w-[1200px] mx-auto px-6 pb-8 border-t border-border pt-6">
         <p className="text-xs text-muted-foreground">
-          © 2026 Amara Muebles. Todos los derechos reservados.
+          © 2026 Amara Muebles.
         </p>
       </div>
 

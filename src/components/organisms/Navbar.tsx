@@ -24,7 +24,7 @@ export function Navbar() {
 
   const isHome = location.pathname === '/';
   const isCatalog = location.pathname === '/catalog';
-  const isAboutUs = location.pathname === '/about-us';
+  const isServicios = location.pathname === '/servicios';
 
   useEffect(() => {
     if (!isHome) {
@@ -156,6 +156,18 @@ export function Navbar() {
           >
             Contáctanos
           </NavLink>
+
+          <NavLink
+            href="/servicios"
+            active={isServicios}
+            onClick={(e: MouseEvent<HTMLAnchorElement>) => {
+              e.preventDefault();
+              setMobileOpen(false);
+              navigate('/servicios');
+            }}
+          >
+            Servicios
+          </NavLink>
         </div>
 
         <div className="flex items-center space-x-4">
@@ -231,6 +243,18 @@ export function Navbar() {
             }
           >
             Contáctanos
+          </NavLink>
+
+          <NavLink
+            href="/servicios"
+            active={isServicios}
+            onClick={(e: MouseEvent<HTMLAnchorElement>) => {
+              e.preventDefault();
+              setMobileOpen(false);
+              navigate('/servicios');
+            }}
+          >
+            Servicios
           </NavLink>
 
           <button

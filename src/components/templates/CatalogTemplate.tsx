@@ -1,52 +1,153 @@
-import React from 'react';
-import { TopNavBar } from '../organisms/TopNavBar';
+import React, { useState, useMemo } from 'react';
+import { ChevronDown } from 'lucide-react';
+import { Navbar } from '../organisms/Navbar';
 import { SidebarFilters } from '../organisms/SidebarFilters';
 import { PromoBanner } from '../organisms/PromoBanner';
 import { TrustSection } from '../organisms/TrustSection';
 import { Footer } from '../organisms/Footer';
 import { CatalogProductCard } from '../molecules/CatalogProductCard';
+import { Breadcrumbs } from '../atoms/Breadcrumbs';
 import { products } from '../../data/products';
-import { Navbar } from '../organisms/Navbar';
+
+// ── Sort ───────────────────────────────────────────────────────────────────
+
+type SortOrder = 'recommended' | 'price-asc' | 'price-desc' | 'newest';
+
+const SORT_OPTIONS: { value: SortOrder; label: string }[] = [
+  { value: 'recommended', label: 'Recomendados' },
+  { value: 'price-asc',   label: 'Precio: Menor a Mayor' },
+  { value: 'price-desc',  label: 'Precio: Mayor a Menor' },
+  { value: 'newest',      label: 'Nuevos Ingresos' },
+];
+
+// ── Category mapping ────────────────────────────────────────────────────────
+
+function categoryFromId(id: string): string {
+  if (id.startsWith('sofa'))    return 'Sofás';
+  if (id.startsWith('comedor')) return 'Comedores';
+  if (id.startsWith('mesa'))    return 'Mesas';
+  if (id.startsWith('silla'))   return 'Sillas';
+  if (id.startsWith('sillon'))  return 'Sillones';
+  return '';
+}
+
+// ── Breadcrumbs ─────────────────────────────────────────────────────────────
+
+const breadcrumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Catálogo' },
+];
+
+// ── Component ───────────────────────────────────────────────────────────────
 
 export const CatalogTemplate: React.FC = () => {
+  const [activeCategories, setActiveCategories] = useState<Set<string>>(new Set());
+  const [sortOrder, setSortOrder] = useState<SortOrder>('recommended');
+
+  const toggleCategory = (cat: string) => {
+    setActiveCategories((prev) => {
+      const next = new Set(prev);
+      if (next.has(cat)) next.delete(cat);
+      else next.add(cat);
+      return next;
+    });
+  };
+
+  const displayedProducts = useMemo(() => {
+    let list = [...products];
+
+    // Filter by category
+    if (activeCategories.size > 0) {
+      list = list.filter((p) => activeCategories.has(categoryFromId(p.id)));
+    }
+
+    // Sort
+    switch (sortOrder) {
+      case 'price-asc':  return [...list].sort((a, b) => a.price - b.price);
+      case 'price-desc': return [...list].sort((a, b) => b.price - a.price);
+      case 'newest':     return [...list].reverse();
+      default:           return list;
+    }
+  }, [activeCategories, sortOrder]);
+
   return (
     <div className="min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground">
       <Navbar />
-      
+
       <main className="pt-32 pb-20 max-w-[1200px] mx-auto px-6">
+
+        {/* Breadcrumbs */}
+        <Breadcrumbs items={breadcrumbs} className="mb-10" />
+
         {/* Page Header */}
         <section className="mb-16 text-center max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Colección Completa
           </h1>
           <p className="text-lg text-muted-foreground">
-            Descubre nuestra selección de muebles diseñados con maderas nobles y sostenibles. Cada pieza celebra la belleza natural del roble, nogal y teca, aportando calidez y elegancia atemporal a tu hogar.
+            Descubre nuestra selección de muebles diseñados con maderas nobles y sostenibles.
+            Cada pieza celebra la belleza natural del roble, nogal y teca, aportando calidez y
+            elegancia atemporal a tu hogar.
           </p>
         </section>
 
         <div className="flex flex-col lg:flex-row gap-12">
+
           {/* Sidebar Filters */}
-          <SidebarFilters />
+          <SidebarFilters
+            activeCategories={activeCategories}
+            onToggleCategory={toggleCategory}
+          />
 
           {/* Product Grid */}
           <div className="flex-1">
+
+            {/* Toolbar */}
             <div className="flex justify-between items-center mb-8">
               <span className="text-sm text-muted-foreground">
-                Mostrando {products.length} productos
+                {displayedProducts.length === products.length
+                  ? `${products.length} productos`
+                  : `${displayedProducts.length} de ${products.length} productos`}
               </span>
-              <select className="bg-transparent border-none text-foreground text-xs uppercase tracking-widest focus:ring-0 cursor-pointer pr-8 font-semibold">
-                <option>Recomendados</option>
-                <option>Precio: Menor a Mayor</option>
-                <option>Precio: Mayor a Menor</option>
-                <option>Nuevos Ingresos</option>
-              </select>
+
+              {/* Sort dropdown — styled with design system */}
+              <div className="relative flex items-center">
+                <select
+                  value={sortOrder}
+                  onChange={(e) => setSortOrder(e.target.value as SortOrder)}
+                  className="appearance-none bg-transparent text-foreground text-xs uppercase tracking-widest cursor-pointer pr-5 pl-0 py-1 border-none focus:outline-none focus:ring-0 font-semibold"
+                >
+                  {SORT_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value} className="normal-case tracking-normal font-normal text-sm bg-background text-foreground">
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 pointer-events-none text-muted-foreground" />
+              </div>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
-              {products.map((product) => (
-                <CatalogProductCard key={product.id} product={product} />
-              ))}
-            </div>
+
+            {/* Grid or empty state */}
+            {displayedProducts.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-24 text-center">
+                <p className="text-muted-foreground text-sm mb-4">
+                  No hay productos en esta categoría.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setActiveCategories(new Set())}
+                  className="text-xs uppercase tracking-widest text-[var(--cx-color-walnut)] hover:opacity-70 transition-opacity underline underline-offset-4"
+                >
+                  Ver todos los productos
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
+                {displayedProducts.map((product) => (
+                  <CatalogProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
 

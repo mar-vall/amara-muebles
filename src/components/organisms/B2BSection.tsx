@@ -17,11 +17,6 @@ const benefits = [
     description:
       'Planificamos producción y entrega según el cronograma de tu obra. Sin sorpresas, sin retrasos que frenen tu proyecto.',
   },
-  {
-    title: 'Showroom disponible',
-    description:
-      'Visita nuestra sala de exhibición para evaluar calidad de acabados, vetas y ensambles de primera mano antes de decidir.',
-  },
 ];
 
 export function B2BSection() {

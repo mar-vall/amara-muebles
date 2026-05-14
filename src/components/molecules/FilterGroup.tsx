@@ -10,20 +10,22 @@ export interface FilterOption {
 export interface FilterGroupProps {
   title: string;
   options: FilterOption[];
+  onToggle?: (label: string) => void;
 }
 
-export const FilterGroup: React.FC<FilterGroupProps> = ({ title, options }) => {
+export const FilterGroup: React.FC<FilterGroupProps> = ({ title, options, onToggle }) => {
   return (
     <div>
       <h3 className="font-semibold text-xs text-foreground mb-4 uppercase tracking-widest border-b border-border pb-2">
         {title}
       </h3>
       <ul className="space-y-3 text-sm text-muted-foreground">
-        {options.map((option, index) => (
-          <li key={index}>
+        {options.map((option) => (
+          <li key={option.label}>
             <Checkbox
               label={`${option.label}${option.count !== undefined ? ` (${option.count})` : ''}`}
-              defaultChecked={option.checked}
+              checked={option.checked ?? false}
+              onChange={() => onToggle?.(option.label)}
             />
           </li>
         ))}

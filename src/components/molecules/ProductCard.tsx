@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import type { Product } from '../../data/products';
 import { productWhatsappUrl } from '../../lib/whatsapp';
 
@@ -7,7 +8,7 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="group flex flex-col">
-      <div className="aspect-[4/3] mb-5 overflow-hidden relative bg-cx-pampas">
+      <Link to={`/producto/${product.id}`} className="block aspect-[4/3] mb-5 overflow-hidden relative bg-cx-pampas">
         <img
           src={src}
           alt={product.name}
@@ -19,7 +20,7 @@ export function ProductCard({ product }: { product: Product }) {
           <p className="text-white text-xs uppercase tracking-widest">{product.name}</p>
           <p className="text-white/70 text-[10px] uppercase tracking-widest mt-1">Ver más →</p>
         </div>
-      </div>
+      </Link>
 
       <h3 className="text-lg font-medium text-foreground mb-1">{product.name}</h3>
       <p className="text-primary text-xs uppercase tracking-widest">{product.material}</p>
