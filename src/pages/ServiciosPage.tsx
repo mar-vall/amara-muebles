@@ -1,4 +1,3 @@
-import React from 'react';
 import { MessageCircle, Ruler, Lightbulb, Hammer, CheckCircle } from 'lucide-react';
 import { Navbar } from '../components/organisms/Navbar';
 import { Footer } from '../components/organisms/Footer';
